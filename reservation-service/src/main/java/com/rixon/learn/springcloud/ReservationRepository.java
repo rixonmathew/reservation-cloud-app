@@ -10,6 +10,6 @@ import java.util.Collection;
 @RepositoryRestResource
 public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
-    @RequestMapping(path = "by-name")
+    @RequestMapping("by-name")
     Collection<Reservation> findByReservationName(@Param("reservationName") String reservationName);
 }

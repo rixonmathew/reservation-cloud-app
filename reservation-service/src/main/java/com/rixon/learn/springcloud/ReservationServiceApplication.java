@@ -1,7 +1,6 @@
 package com.rixon.learn.springcloud;
 
 
-
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.graphite.Graphite;
 import com.codahale.metrics.graphite.GraphiteReporter;
@@ -16,16 +15,16 @@ import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.*;
+import org.springframework.data.rest.core.annotation.HandleAfterCreate;
+import org.springframework.data.rest.core.annotation.HandleAfterDelete;
+import org.springframework.data.rest.core.annotation.HandleAfterSave;
+import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceProcessor;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
