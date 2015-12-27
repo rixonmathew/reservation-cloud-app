@@ -26,6 +26,7 @@
 	<modules>
 		<module>reservation-service</module>	
 		<module>config-service</module>
+		<module>eureka-service</module>
 	</modules>
 
 	<repositories>
