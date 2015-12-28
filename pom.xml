@@ -28,6 +28,7 @@
 		<module>config-service</module>
 		<module>eureka-service</module>
 		<module>reservation-client</module>
+		<module>consul-service</module>
 	</modules>
 
 	<repositories>
