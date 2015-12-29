@@ -4,3 +4,4 @@
 /broker.log
 /broker.err.log
 *.DS_Store
+.DS_Store
