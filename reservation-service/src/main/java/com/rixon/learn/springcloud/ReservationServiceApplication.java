@@ -44,16 +44,16 @@ public class ReservationServiceApplication {
         return () -> Health.status("I <3 Spring!").build();
     }
 
-    @Bean
-    GraphiteReporter graphiteReporter(MetricRegistry registry,
-                                      @Value("${graphite.host}") String host,
-                                      @Value("${graphite.port}") int port) {
-        GraphiteReporter reporter = GraphiteReporter.forRegistry(registry)
-                .prefixedWith("reservations")
-                .build(new Graphite(host, port));
-        reporter.start(2, TimeUnit.SECONDS);
-        return reporter;
-    }
+//    @Bean
+//    GraphiteReporter graphiteReporter(MetricRegistry registry,
+//                                      @Value("${graphite.host}") String host,
+//                                      @Value("${graphite.port}") int port) {
+//        GraphiteReporter reporter = GraphiteReporter.forRegistry(registry)
+//                .prefixedWith("reservations")
+//                .build(new Graphite(host, port));
+//        reporter.start(2, TimeUnit.SECONDS);
+//        return reporter;
+//    }
 
     @Component
     @RepositoryEventHandler
