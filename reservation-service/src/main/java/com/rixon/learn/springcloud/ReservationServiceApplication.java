@@ -1,14 +1,10 @@
 package com.rixon.learn.springcloud;
 
 
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.graphite.Graphite;
-import com.codahale.metrics.graphite.GraphiteReporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.health.Health;
@@ -18,6 +14,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.metrics.servo.ServoMetricsAutoConfiguration;
+import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
 import org.springframework.data.rest.core.annotation.HandleAfterDelete;
@@ -29,15 +28,22 @@ import org.springframework.hateoas.ResourceProcessor;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableAutoConfiguration(exclude={ServoMetricsAutoConfiguration.class})
+@EnableBinding(Sink.class)
 public class ReservationServiceApplication {
 
     private static Logger LOGGER = LoggerFactory.getLogger(
             ReservationServiceApplication.class);
+
+    @Bean
+    AlwaysSampler alwaysSampler() {
+        return new AlwaysSampler();
+    }
+
+
 
     @Bean
     HealthIndicator healthIndicator() {
